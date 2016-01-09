@@ -1,0 +1,112 @@
+<html ng-app="app">
+<head>
+	<title></title>
+	<script type="text/javascript"
+		src="libraries/angular.js"></script>
+
+	<script type="text/javascript">
+
+	angular.module("app", [])
+	.controller("main", function($scope, $http){
+
+		$scope.brands = [
+			{brand: "Adidas", price: 4500.0},
+			{brand: "Nile", price: 7500.0},
+			{brand: "Reabock", price: 3500.0}
+		];
+
+		$scope.people = [];
+		$http.get("http://vinod.co/rest/contacts.php")
+		.success(function(resp){
+			$scope.people = resp;
+		})
+
+		$scope.prop = "first_name";
+	})
+	.directive("caList", function(){
+		var d = {};
+
+		d.restrict = "AE";
+		d.scope = {
+			data: "=collection",
+			property: "="
+		}
+		d.template = "<ul>"
+			+ "<li ng-repeat='d in data'>{{d[property]}}"
+			+ "</li></ul>";
+
+		return d;
+	})
+	.directive("caTable", ["$http", function($http){
+
+			var d = {};
+			d.restrict = "AE";
+			d.scope = {
+				url:"=",
+				columns:"=",
+				labels:"="
+			};
+
+			d.link = function(sc, element, attrs){
+				$http.get(sc.url)
+				.success(function(resp){
+
+					var out = "<table border='1'>"
+
+					if(sc.labels){
+						out += "<thead><tr>";
+						sc.labels.forEach(function(label){
+							out += "<th>"+label+"</th>";
+						});
+					}
+
+					resp.forEach(function(rec){
+						out += "<tr>";
+						sc.columns.forEach(function(prop){
+							out +="<td>" + rec[prop] + "</td>";
+						});
+						out += "</tr>";
+					});
+
+					out += "</table>";
+					element.html(out);
+
+				});
+			};
+
+			return d;
+		}])
+	</script>
+</head>
+<body ng-controller="main">
+
+	<h3>Contacts: </h3>
+	<ca-table
+		class="table"
+		id="contactsTable"
+		style="width: 100%;"
+		url="'http://vinod.co/rest/contacts.php'"
+		columns="['first_name', 'last_name', 'city']"
+		labels="['Firstname', 'Lastname', 'City']">
+
+	</ca-table>
+
+
+	<div ca-table
+		url="'http://mybasket.vinod.co/api/products'"
+		columns="['description', 'unit_price', 'quantity_per_unit', 'discount', 'brand']"
+		labels="['Product name', 'Price', 'Quantity per unit', 'Discount', 'Brand']">
+
+	</div>
+
+
+	<h3>Brands: </h3>
+	<ca-list collection="brands" property="'brand'">
+	</ca-list>
+
+	<h3>People: </h3>
+	<div ca-list collection="people" property="prop">
+	</div>
+
+</body>
+</html>

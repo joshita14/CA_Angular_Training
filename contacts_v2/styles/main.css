@@ -1,0 +1,26 @@
+table th[ng-click]:hover {
+	cursor: pointer;
+	background-color: yellow;
+}
+
+form label{
+  display : inline-block;
+  width : 150px;
+  text-align: right;
+  padding-right :20px;
+}
+
+form div{
+  padding:10px;
+}
+
+form input {
+padding: 5px;
+border-radius: 3px;
+}
+
+footer {
+text-align: center;
+font-size: .8em;
+margin-top:100px;
+}

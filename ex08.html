@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="ca" ng-controller="main">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="/libraries/angular.js">
+
+    </script>
+    <script type="text/javascript">
+       angular.module("ca",[])
+       .directive("caLabel",[function(){
+
+        //this function should return config object rep directive
+        var cfg = {};
+        cfg.restrict = "AE";
+        cfg.scope ={
+          src: "=",     //look for src and just add its value
+        };
+
+        cfg.link = function(scope,elem,attrs){
+
+          console.log("scope.src",scope.src);
+          console.log("compile arguments",arguments);
+
+          var tbl = "<table border ='1'>";
+          for(var key in scope.src){
+
+            tbl += "<tr>";
+            var val = scope.src[key];
+            tbl += "<td>"+ key+ "</td>";
+            tbl += "<td>"+ val+ "</td>";
+            tbl += "</tr>";
+          }
+
+          tbl +="</table>";
+          elem.html(tbl);
+        };
+
+         return cfg;
+      }])
+      .controller("main",["$scope",function($scope){
+          $scope.user = {
+            firstname : "joshita",
+            lastname : "mishra",
+            city : "hyderabad",
+            phone : "8790"
+          }
+          //$scope.cities = ["Hyderabad","Hyderabad1","Hyderabad2","Hyderabad3"];
+      }]);
+    </script>
+  </head>
+  <body>
+      <h1>Angular Drectives</h1>
+      <div ca-label src="user"></div>
+      <hr>
+      <div data-ca-list source="cities">Testing Directives
+      </div>
+      <hr>
+      <ca-list></ca-list>
+  </body>
+</html>

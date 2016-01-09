@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="ca" ng-controller="main">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="/libraries/angular.js">
+
+    </script>
+    <script type="text/javascript">
+       angular.module("ca",[])
+       .directive("caList",[function(){
+
+        //this function should return config object rep directive
+        var cfg = {};
+        cfg.restrict = "AE";
+        cfg.scope ={
+          data: "=source",
+          type: "="
+        };
+        cfg.template = "<ul>"
+        +"<li ng-repeat ='d in data'>{{d}}"
+        +"</li></ul>";
+        return cfg;
+
+      }])
+      .controller("main",["$scope",function($scope){
+          $scope.names = ["Vinod","John","Jane","Smith"];
+          $scope.cities = ["Hyderabad","Hyderabad1","Hyderabad2","Hyderabad3"];
+      }]);
+    </script>
+  </head>
+  <body>
+      <h1>Angular Drectives</h1>
+      <div type="ul" ca-list source="names">Testing Directives</div>
+      <hr>
+      <div type="ol" data-ca-list source="cities">Testing Directives
+      </div>
+      <hr>
+      <ca-list></ca-list>
+  </body>
+</html>

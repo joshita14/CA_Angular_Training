@@ -1,0 +1,70 @@
+<div ng-show="contacts.length">
+    <h3>List of all contacts</h3>
+    <p>
+  <!--    <input type="search"
+      placeholder = "enter search token" ng-model="token"> -->
+    </p>
+    <table border = "1">
+      <thead>
+        <tr>
+           <th>Name
+           <input type="search" placeholder="filter" ng-model="token.first_name">
+           <!--searches only the first_name , any alphabet that matches it-->
+           </th>
+           <th ng-click="sortBy('city')">City
+           <input type="search" placeholder="filter" ng-model="token.city">
+           </th>
+           <th ng-click="sortBy('phone')">Phone
+            <input type="search" placeholder="filter" ng-model="token.phone">
+           </th>
+           <th ng-click="sortBy('email')">Email
+            <input type="search" placeholder="filter" ng-model="token.email">
+           </th>
+
+        </tr>
+      </thead>
+      <tbody>
+            <!--here token is var -->
+            <tr ng-repeat="c in contacts|filter:token|orderBy:sortKeys">
+            <td ng-hide="$index==editingRow">{{c.first_name}} {{c.last_name}} </td>
+
+            <td ng-show="$index==editingRow">
+              <input ng-model="c.first_name">
+              <input ng-model="c.last_name">
+            </td>
+
+            <td ng-hide="$index==editingRow">{{c.city}}</td>
+            <td ng-show="$index==editingRow"><input ng-model="c.city"></td>
+
+            <td ng-hide="$index==editingRow">{{c.phone}}</td>
+            <td ng-show="$index==editingRow"><input ng-model="c.phone"></td>
+
+            <td ng-hide="$index==editingRow">{{c.email}}</td>
+            <td ng-show="$index==editingRow"><input ng-model="c.email"></td>
+               <td>
+                 <button
+                   ng-hide="$index==editingRow"
+                   ng-click="inlineEdit($index)">
+                   Inline Edit </button>
+                 <button
+                   ng-show="$index==editingRow"
+                   ng-click="doneEditing()">
+                   Done Editing</button>
+                 <a href="#/edit/{{c.id}}">Edit</a>
+                 <a href="" ng-click="delete(c)">Delete</a>
+               </td>
+          </tr>
+      </tbody>
+    </table>
+</div>
+
+<p>
+  Number = {{283.47889900|number:4}}
+</p>
+
+<p>
+  Date = {{ dt | date : "yyyy-MM"}}
+</p>
+<div ng-hide="contacts.length">
+    <h3>No contacts in your list</h3>
+</div>

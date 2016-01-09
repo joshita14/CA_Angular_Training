@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="calci" ng-controller="calciController">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../libraries/angular.js"></script>
+
+    <script type="text/javascript" src="./scripts/app.js"></script>
+    <script type="text/javascript" src="./scripts/Calculator.js"></script>
+  </head>
+<body>
+
+<h1>Calci App</h1>
+<input placeholder="Number 1" ng-model="num1"> <br/><br/>
+<input placeholder="Number 2" ng-model="num2"> <br/><br/>
+
+
+<button ng-click="add()"> + </button>
+<button ng-click="subtract()"> - </button>
+<button ng-click="multiply()"> * </button>
+<button ng-click="divide()"> / </button>
+
+<h3 ng-hide="result === undefined">Result = {{result}}</h3>
+</body>
+
+</html>
