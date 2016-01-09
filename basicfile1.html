@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Js Basics</title>
+
+//all variables are global unless if we define the variable with var
+<script type="text/javascript" src = "./closurescope.js">
+
+   myname = "John doe";
+
+   var anan = function test(){
+	  var mycity = "Newyork";
+	  debugger;
+   }
+
+function testObject(){
+
+	p1 = {};
+	p1.name = "John";
+	p1.city = "Dallas";
+	p1.toString = function(){
+		return this.name +" lives in city  "+this.city;
+	};
+
+	p2 ={};
+
+	p2.name = "Jane";
+	p2.city = "Newyork";
+
+	p3 = {
+		name: "Smith",
+		city: "Chicago"
+	};
+}
+</script>
+</head>
+<body>
+</body>
+</html>

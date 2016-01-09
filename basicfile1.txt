@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Js Basics</title>
+
+
+<script type="text/javascript">
+
+   myname = "John doe";
+
+   function test(){
+	   mycity = "Newyork";
+   }
+
+   test();
+</script>
+</head>
+<body>
+
+
+<form>  
+	<input type="button" value="clickme" onclick=testwithparameters(100)>
+</form>
+</body>
+</html>

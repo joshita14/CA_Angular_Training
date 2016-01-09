@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Js Basics</title>
+    <script type="text/javascript">
+
+      function sleep(ms) {
+        var d1 = new Date().getTime();
+        while (true) {
+          var d2 = new Date().getTime();
+          if (d2 - d1 > ms)
+            break;
+          }
+        }
+
+      function main() {
+
+        console.log("main function started");
+
+        setTimeout(function() {
+          console.log("After a minimum of 3 seconds");
+        }, 2000);
+        //here 2000 is given such that it gets exeuted after 2000 seconds only that guranteed, but after 2000
+        //ms when it gets executed is not guranteed.
+
+        sleep(5000);
+
+        console.log("main function ended");
+      }
+    </script>
+  </head>
+
+  <body></body>
+</html>

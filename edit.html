@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+//ng-app(this is angular app)
+//ng-app refers to the name of the module of your application
+//angular secific attributes :
+<html ng-app="CA">
+<head>
+<meta charset="UTF-8">
+<title>Js Basics</title>
+
+<script type="text/javascript" src = "angular-1.4.8/angular.js">
+</script>
+
+<script type = "text/javascript">
+     var ca = angular.module("CA",[]);
+
+       //add "stuffs" to the module
+       ca.controller("main",["$scope",function($scope){
+       $scope.myname = "Joshita";
+       $scope.mycity = "Hyderabad";
+       //console.log("Inside The Main Controller");
+
+     }]);
+</script>
+
+<style type="text/css">
+  .box{
+    border : 1px solid black;
+    min-height : 200px;
+    margin : 20px;
+    width : 800px;
+  }
+</style>
+
+</head>
+<body>
+  <h1>Angular js demo</h1>
+  <div class = "box" ng-controller="main">
+     Name : <br />
+     <input type = "text" ng-model = "myname"/> </br> </br>
+     City : <br />
+     <input type ="text" ng-model = "mycity"/> </br> </br>
+
+     <h1>{{myname}} lives in {{mycity}}
+  </div>
+</body>
+</html>

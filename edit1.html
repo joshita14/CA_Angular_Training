@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+//ng-app(this is angular app)
+//ng-app refers to the name of the module of your application
+//angular specific attributes :
+<html ng-app="ca">
+<head>
+<meta charset="UTF-8">
+<title>Angular Demos</title>
+<script type="text/javascript" src = "angular-1.4.8/angular.js"></script>
+<script type = "text/javascript">
+
+      angular.module("sub-module",[]);
+      .controller("ctrl2",["$scope",function($scope){
+        $scope.place = "Joshita";
+      }]);
+
+       angular.module("ca",["sub-module"]);
+       .controller("ctrl1",["$scope",function($scope){
+             $scope.name = "Mishra";
+       }]);
+</script>
+</head>
+
+<body>
+  <h1>Angular js demo</h1>
+  <div ng-controller="ctrl1">
+     <h1>{{name}} and {{place}}</h1>
+  </div>
+</body>
+</html>

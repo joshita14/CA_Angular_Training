@@ -1,0 +1,56 @@
+<html ng-app="ca">
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Page</title>
+    <script src="angular-1.4.8/angular.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+      angular.module("ca", []).controller("main", [
+        "$scope",
+        "$timeout",
+        function($scope, $timeout) {
+
+          $scope.names = ["joshita", "mishra", "one"];
+          $scope.addName = function() {
+            if (!$scope.newName)
+              return;
+
+            $scope.names.push($scope.newName);
+            $scope.newName = "";
+          }
+
+          $scope.deleteNames = function(i) {
+            $scope.deleteName = $scope.names.splice(i, 1)[0];
+
+            $timeout(function() {
+              console.log("resetting deleted names");
+              $scope.deleteName = "";
+            },2000)
+          }
+        }
+      ]);
+    </script>
+  </head>
+
+  <body ng-controller="main">
+    <h1>Angular js demo</h1>
+    <p>
+      <input ng-model="newName" placeholder="enter a name"/>
+      <button ng-click="addName()">ADD</button>
+    </p>
+
+    <h3 ng-show="names.length">List Of Names {{names}}</h3>
+
+    <ul>
+      <li ng-repeat="oneName in names">{{oneName}}
+        <a href="" ng-click="deleteNames($index)" style="text-decoration : none;">&times;
+        </a>
+      </li>
+    </ul>
+
+    <h3 ng-show="deleteName">The Name
+      {{deleteName}}
+      is deleted</h3>
+
+  </body>
+</html>
